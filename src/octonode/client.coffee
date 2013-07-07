@@ -62,9 +62,9 @@ class Client
     uri+= "api.github.com#{path}"
     
     if typeof @token == 'string' and path.indexOf("?") < 0
-      url += "?access_token=#{@token}" 
+      uri += "?access_token=#{@token}" 
     else if typeof @token == 'string' and path.indexOf("?") > 0
-      url += "&access_token=#{@token}"
+      uri += "&access_token=#{@token}"
     
     uri+= if typeof @token == 'object' and @token.id then "?client_id=#{@token.id}&client_secret=#{@token.secret}" else ''
     uri+= "&page=#{page}" if page?
