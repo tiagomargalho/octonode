@@ -85,6 +85,13 @@ class Repo
       return cb(err) if err
       if s isnt 200 then cb(new Error("Repo issuesWithFilter error")) else cb null, b
   
+  # Get all the comments for a repository since a specified datetime. The since parameter is a datetime in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
+  # '/repos/tiagomargalho/octonode/issues/comments' GET
+  commentsSince: (since, cb) ->
+    @client.get "/repos/#{@name}/issues/comments", (err, s, b) ->
+      return cb(err) if err
+      if s isnt 200 then cb(new Error("Repo commentsSince error")) else cb null, b
+
   # Get all the comments for a specified issue ID.
   # '/repos/tiagomargalho/octonode/issues/123/comments' GET
   commentsForIssue: (issueId, cb) ->
