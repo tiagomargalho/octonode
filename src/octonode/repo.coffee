@@ -76,7 +76,7 @@ class Repo
 
   # Get the issues for a repository with filtering capabilities. The since parameter is a datetime in ISO 8601 format: YYYY-MM-DDTHH:MM:SSZ
   # Parameter default values are based on Github API default values.
-  # '/repos/tiagomargalho/hub/issues' GET
+  # '/repos/tiagomargalho/octonode/issues' GET
   issuesWithFilter: (milestone = "*", state = "open", since, cb) ->
     url = "/repos/#{@name}/issues?milestone=#{milestone}&state=#{state}"
     if since
@@ -84,6 +84,13 @@ class Repo
     @client.get url, (err, s, b) ->
       return cb(err) if err
       if s isnt 200 then cb(new Error("Repo issuesWithFilter error")) else cb null, b
+  
+  # Get all the comments for a specified issue ID.
+  # '/repos/tiagomargalho/octonode/issues/123/comments' GET
+  commentsForIssue: (issueId, cb) ->
+    @client.get "/repos/#{@name}/issues/#{@issueId}/comments", (err, s, b) ->
+      return cb(err) if err
+      if s isnt 200 then cb(new Error("Repo commentsForIssue error")) else cb null, b
 
   # Get the README for a repository
   # '/repos/pksunkara/hub/readme' GET
