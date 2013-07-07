@@ -61,9 +61,9 @@ class Client
     uri+= if typeof @token == 'object' and @token.username then "#{@token.username}:#{@token.password}@" else ''
     uri+= "api.github.com#{path}"
     
-    if typeof @token == 'string' and path.indexOf("?") < 0
+    if typeof @token == 'string' and path.indexOf('?') < 0
       uri += "?access_token=#{@token}" 
-    else if typeof @token == 'string' and path.indexOf("?") > 0
+    else if typeof @token == 'string' and path.indexOf('?') > 0
       uri += "&access_token=#{@token}"
     
     uri+= if typeof @token == 'object' and @token.id then "?client_id=#{@token.id}&client_secret=#{@token.secret}" else ''

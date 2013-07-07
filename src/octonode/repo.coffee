@@ -95,7 +95,7 @@ class Repo
   # Get all the comments for a specified issue ID.
   # '/repos/tiagomargalho/octonode/issues/123/comments' GET
   commentsForIssue: (issueId, cb) ->
-    @client.get "/repos/#{@name}/issues/#{@issueId}/comments", (err, s, b) ->
+    @client.get "/repos/#{@name}/issues/#{issueId}/comments", (err, s, b) ->
       return cb(err) if err
       if s isnt 200 then cb(new Error("Repo commentsForIssue error")) else cb null, b
 
